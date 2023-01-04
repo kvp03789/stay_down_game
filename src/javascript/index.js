@@ -1,6 +1,6 @@
 import '../css/style.css'
 import { Player } from './player';
-import {collideTop} from './utils.js'
+import {collideTop, controller, handleKeyDownUp} from './utils.js'
 
 (() => {
   const world_width = 480;
@@ -23,6 +23,8 @@ import {collideTop} from './utils.js'
   
 
   function update() {
+    if(controller.left)player.x --
+    
     player.velocity_y += gravity;
     player.velocity_y *= friction;
     player.y += player.velocity_y;
@@ -59,9 +61,11 @@ import {collideTop} from './utils.js'
   display.canvas.width = world_width;
   display.canvas.height = world_height;
 
-  window.requestAnimationFrame(cycle)
 
-  console.log(player)
+  window.addEventListener('keydown', handleKeyDownUp);
+  window.addEventListener('keyup', handleKeyDownUp)
+
+  window.requestAnimationFrame(cycle)
 })()
 
 
