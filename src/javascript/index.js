@@ -23,13 +23,17 @@ import {collideTop, controller, handleKeyDownUp} from './utils.js'
   
 
   function update() {
-    if(controller.left)player.x --
-    
-    player.velocity_y += gravity;
-    player.velocity_y *= friction;
-    player.y += player.velocity_y;
 
-    collideTop(player, ground.top)
+    if(controller.left) player.moveLeft()
+    if(controller.right) player.moveRight()
+    if(controller.up) player.jump()
+
+    player.updatePosition(gravity, friction);
+
+    if(collideTop(player, ground.top)){
+      player.ground()
+    }
+
   }
 
   function render() {
